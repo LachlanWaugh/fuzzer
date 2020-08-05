@@ -15,8 +15,8 @@ class XMLFuzzer:
         except Exception as e:
             print(e)
 
-    def _bitflip(self, xml):
-        bytes = bytearray(xml, 'UTF-8')
+    def _bitflip(self):
+        bytes = bytearray(ET.tostring(self._xml).decode(), 'UTF-8')
 
         for i in range(0, len(bytes)):
             if random.randint(0, 20) == 1:
@@ -30,9 +30,9 @@ class XMLFuzzer:
         def _add_links():
             # Forge some wierd links
             child = ET.SubElement(root, 'div')
-            child.set("$s$s$s$s", "$s$s$s$s")
+            child.set("$s" * 4, "$s" * 4)
             content = ET.SubElement(child, 'a')
-            content.set("a href", "http://%s%s%s%s%s.com")
+            content.set("a href", "http://" + "%s" * 4 +  ".com")
             root.append(child)
 
         def _add_grandchild(): 
@@ -151,12 +151,12 @@ class XMLFuzzer:
         ############################################################
         ##             Test invalid (format) XML data             ##
 
-        # for i in range(0, 1000):
-        #     # test random input (invalid XML)
-        #     yield get_random_string((i + 1) * 10)
+        for i in range(0, 1000):
+            # test random input (invalid XML)
+            yield get_random_string((i + 1) * 10)
 
-        #     # test random bitflips on the test input
-        #     yield self._bitflip(ET.tostring(self._xml).decode())
+            # test random bitflips on the test input
+            yield self._bitflip()
 
         ############################################################
 

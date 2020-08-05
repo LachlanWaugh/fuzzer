@@ -9,6 +9,7 @@ import random
 from json_fuzzer import *
 from csv_fuzzer import *
 from xml_fuzzer import *
+from pt_fuzzer import *
 from helper import *
 
 # argument error checking
@@ -40,8 +41,8 @@ with open(inputFile) as file:
         json_fuzzer(binary, inputFile)
     elif (is_xml(file)):
         xml_fuzzer(binary, inputFile)
-    elif (is_csv(file)):
-        csv_fuzzer(binary, inputFile)
+    #elif (is_csv(file)):
+    #    csv_fuzzer(binary, inputFile)
     else:
-        txt_fuzzer(binary, inputFile)
+        pt_fuzzer(binary, inputFile)
     
