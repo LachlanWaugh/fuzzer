@@ -49,6 +49,6 @@ The XML Fuzzer is currently in early stages of development, but so far it has th
 
 ## Plaintext fuzzer
 
-## Bonus Marks
-
 # Future Work
+- Combining above tests together
+- Implement code coverage, to try and treverse all code paths
